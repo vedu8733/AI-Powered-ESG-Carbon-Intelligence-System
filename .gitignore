@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+env/
+
+# Environment
+.env
+.env.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Data & Models
+data/
+*.faiss
+*.pkl
+
+# Logs
+*.log
+logs/
+
+# Build
+dist/
+build/
+*.egg-info/
