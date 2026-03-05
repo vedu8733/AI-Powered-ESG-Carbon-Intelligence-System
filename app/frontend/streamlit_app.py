@@ -26,12 +26,10 @@ from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer
 # -----------------------------------------------------------------------------
 import os
 
-# Detect if running in HuggingFace Space
-if os.getenv("SPACE_ID"):
-    ANALYZE_ENDPOINT = "/api/v1/analyze-company"
-else:
-    API_BASE_URL = "http://localhost:8000"
-    ANALYZE_ENDPOINT = f"{API_BASE_URL}/api/v1/analyze-company"
+# If running on cloud
+API_BASE_URL = os.getenv("API_BASE_URL", "http://localhost:8000")
+
+ANALYZE_ENDPOINT = f"{API_BASE_URL}/api/v1/analyze-company"
 
 REQUIRED_COLUMNS: List[str] = [
     "electricity_kwh",

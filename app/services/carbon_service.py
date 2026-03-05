@@ -1,15 +1,11 @@
-"""
-Carbon-related business logic for the ESG & Carbon Intelligence System.
 
-This module contains pure computation utilities with no API or I/O logic.
-"""
 
 from __future__ import annotations
 
 from typing import Dict
 
 
-# Emission factors (kg CO2 per activity unit)
+# Emission factors (kg CO2 per activity unit) -- carboncalculation
 ELECTRICITY_EMISSION_FACTOR = 0.82  # kg CO2 / kWh
 DIESEL_EMISSION_FACTOR = 2.68  # kg CO2 / liter
 COAL_EMISSION_FACTOR = 2.42  # kg CO2 / kg
@@ -17,12 +13,7 @@ WASTE_EMISSION_FACTOR = 100.0  # kg CO2 / ton
 
 
 def _validate_non_negative_float(value: float, name: str) -> float:
-    """
-    Validate that value is a number and non-negative.
-
-    Raises:
-        ValueError: If the value is not a number or is negative.
-    """
+   
     if not isinstance(value, (int, float)):
         raise ValueError(f"{name} must be a number, got {type(value).__name__}")
     if value < 0:
@@ -36,25 +27,7 @@ def calculate_emissions(
     coal_kg: float,
     waste_tons: float,
 ) -> Dict[str, object]:
-    """
-    Calculate carbon emissions and related metrics.
-
-    Args:
-        electricity_kwh: Electricity consumption in kWh.
-        diesel_liters: Diesel consumption in liters.
-        coal_kg: Coal consumption in kilograms.
-        waste_tons: Waste generated in metric tons.
-
-    Returns:
-        A structured dictionary including:
-            - total_emissions_tons: Total emissions in metric tons CO2e.
-            - breakdown_tons: Emissions per source in metric tons CO2e.
-            - emission_intensity: Relative contribution per source (0–1).
-            - units: Metadata about units used.
-
-    Raises:
-        ValueError: If any input is invalid.
-    """
+  
 
     electricity_kwh = _validate_non_negative_float(electricity_kwh, "electricity_kwh")
     diesel_liters = _validate_non_negative_float(diesel_liters, "diesel_liters")

@@ -1,10 +1,4 @@
-"""
-LLM service layer for Groq-hosted models.
 
-This module provides a small, production-ready wrapper around the
-official Groq Python SDK, exposing a simple text generation function
-for downstream services.
-"""
 
 from __future__ import annotations
 
@@ -26,7 +20,7 @@ class LLMServiceError(RuntimeError):
 
 
 def _get_api_key() -> str:
-    """Load the Groq API key from environment variables."""
+   
     api_key = os.getenv("GROQ_API_KEY", "").strip()
     if not api_key:
         raise LLMServiceError(
@@ -51,19 +45,7 @@ def _get_client() -> Groq:
 
 
 def generate_text(prompt: str) -> str:
-    """
-    Generate text from the configured Groq LLM.
-
-    Args:
-        prompt: User prompt text.
-
-    Returns:
-        A clean string response from the LLM.
-
-    Raises:
-        ValueError: If the prompt is empty or whitespace.
-        LLMServiceError: For configuration or API-related issues.
-    """
+    
     if not isinstance(prompt, str):
         raise ValueError("prompt must be a string.")
 

@@ -1,9 +1,4 @@
-"""
-Main API routes for ESG & Carbon Intelligence.
 
-This module exposes FastAPI endpoints and delegates all business logic
-to dedicated service and agent layers.
-"""
 
 from __future__ import annotations
 

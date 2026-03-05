@@ -1,25 +1,18 @@
-"""
-ESG scoring business logic for the ESG & Carbon Intelligence System.
 
-This module implements a transparent, deterministic scoring model
-without any machine learning. It is intentionally simple and
-explainable so that assumptions can be reviewed and adjusted.
-"""
 
 from __future__ import annotations
 
 from typing import Dict
 
 
-# Benchmarks and normalization constants (domain-agnostic defaults).
-# These can be tuned per sector if needed, but are kept simple here.
+
 EMISSIONS_BENCHMARK_TONS = 1_000.0  # Higher total emissions than this strongly penalize score.
 WASTE_BENCHMARK_TONS = 100.0  # Waste above this level drives down the environmental score.
 CSR_BENCHMARK_PER_EMPLOYEE = 200.0  # Approx. "good" CSR spend per employee in monetary units.
 
 
 def _validate_non_negative_float(value: float, name: str) -> float:
-    """Validate that a value is a number and non-negative."""
+    
     if not isinstance(value, (int, float)):
         raise ValueError(f"{name} must be a number, got {type(value).__name__}")
     if value < 0:
@@ -28,7 +21,7 @@ def _validate_non_negative_float(value: float, name: str) -> float:
 
 
 def _validate_positive_int(value: int, name: str) -> int:
-    """Validate that a value is an integer and strictly positive."""
+    
     if not isinstance(value, int):
         raise ValueError(f"{name} must be an integer, got {type[value].__name__}")
     if value <= 0:
@@ -37,7 +30,7 @@ def _validate_positive_int(value: int, name: str) -> int:
 
 
 def _clamp(value: float, minimum: float = 0.0, maximum: float = 100.0) -> float:
-    """Clamp a numeric value to the inclusive range [minimum, maximum]."""
+   
     return max(minimum, min(maximum, value))
 
 
@@ -84,34 +77,7 @@ def calculate_esg_score(
     waste_tons: float,
     employee_count: int,
 ) -> Dict[str, object]:
-    """
-    Calculate an explainable ESG score based on simple, transparent rules.
-
-    The score is composed as:
-      - Environmental: 40%
-      - Social: 30%
-      - Governance: 30%
-
-    All sub-scores are expressed on a 0–100 scale.
-
-    Args:
-        total_emissions_tons: Total GHG emissions in metric tons CO2e.
-        csr_spending: Total CSR expenditure in arbitrary currency units.
-        waste_tons: Waste generated in metric tons.
-        employee_count: Number of employees (must be > 0).
-
-    Returns:
-        A dictionary with:
-            - environmental_score (float)
-            - social_score (float)
-            - governance_score (float)
-            - final_esg_score (float)
-            - risk_level ("Low", "Medium", "High")
-            - explanation (short, professional narrative)
-
-    Raises:
-        ValueError: When any input value is invalid.
-    """
+   
 
     total_emissions_tons = _validate_non_negative_float(
         total_emissions_tons, "total_emissions_tons"

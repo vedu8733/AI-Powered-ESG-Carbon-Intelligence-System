@@ -1,10 +1,4 @@
-"""
-Compliance agent built on top of the ESG RAG pipeline.
 
-This agent provides a simple, high-level interface for ESG and
-sustainability compliance analysis, delegating retrieval and generation
-to the underlying RAG pipeline.
-"""
 
 from __future__ import annotations
 

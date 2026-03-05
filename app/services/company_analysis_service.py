@@ -1,10 +1,4 @@
-"""
-Company-level ESG analysis orchestration service.
 
-This module composes lower-level services (carbon, ESG score, anomaly
-detection, compliance RAG, and reporting) into a single, cohesive
-analysis pipeline. It contains no FastAPI or transport-layer logic.
-"""
 
 from __future__ import annotations
 
@@ -44,36 +38,7 @@ def analyze_company(
     csr_spending: float,
     employee_count: int,
 ) -> Dict[str, Any]:
-    """
-    Run full ESG and carbon intelligence analysis for a single company.
-
-    This orchestration function:
-      1. Calculates carbon emissions.
-      2. Calculates ESG scores.
-      3. Detects anomalies in input data.
-      4. Runs a compliance-oriented RAG analysis.
-      5. Generates an executive ESG report.
-
-    Args:
-        electricity_kwh: Annual electricity consumption in kWh.
-        diesel_liters: Annual diesel consumption in liters.
-        coal_kg: Annual coal consumption in kg.
-        waste_tons: Waste generated in metric tons.
-        csr_spending: CSR spending in currency units.
-        employee_count: Number of employees.
-
-    Returns:
-        Dictionary with keys:
-            - carbon
-            - esg
-            - anomaly
-            - compliance
-            - report
-
-    Raises:
-        ValueError: When underlying services raise validation errors.
-        RuntimeError: When report or compliance generation fails.
-    """
+   
 
     # 1. Carbon analysis
     carbon_result = calculate_emissions(
